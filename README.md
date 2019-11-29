@@ -96,7 +96,7 @@ Additionally, the image creation starts from a constant vector that is optimized
 
 
 ### How do latents (latent space) make it easier to modify an image?
-A point within the latent space W from the mapping network represents a fixed image with fixed features. If you take that point and shift it across an axis, you modify the features of the image. If modify in soley the direction of a specific feature within the latent space W, everything about the image stays the same besides the feature that the point is being shifted towards. 
+A vector within the latent space W from the mapping network represents a fixed image with fixed features. If you take that vector and shift it across an axis, you modify the features of the image. If modified in soley the direction of a specific feature within the latent space W, everything about the image stays the same besides the feature that the vector is being shifted towards. 
 
 To make this more clear, imagine a vector that represents a male with short hair within the latent space W. If you'd like to keep the short hair, but generate a female version of a male, all you need to do is shift the vector in the direction of female without changing the direction of the type of hair.
 
