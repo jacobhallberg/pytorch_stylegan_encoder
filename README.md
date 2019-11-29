@@ -84,7 +84,7 @@ In traditional GAN architecture, the input vector z is sampled from a gaussian d
 
 For example, above shows the actual feature distribution of some data and the feature distribtuion of data sampled from a gaussian distribution. In the above case, the actual distribution of data does not contain males with long hair, but the sampled vector z from a gaussian distribution will generate images of males with long hair.
 
-This is where StlyeGAN shines. The mapping network doesn't have to map the vectors z into a gaussian distribution because the mapping is a learned process from the data itself. Meaning the mapping network is able to produce a latent space W that can better represent the features seen in the data.
+This is where StlyeGAN shines. The mapping network doesn't have to map the vectors z into a gaussian distribution because the mapping network is learned through the data itself. Meaning the mapping network is able to produce a latent space W that can better represent the features seen in the data.
 
 |  Actual Feature Distribution | Mapping Network Feature Distribution  |
 |---|---|
