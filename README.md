@@ -39,7 +39,7 @@ python InterFaceGAN/edit.py
 The resulting script will modify the latents and correspondingly the aligned face with the boundary that you select (pose in the above example). It will save all of the transformed images in the -o directory (./results in the above example).
 
 ## The Image To Latent Model
-The process of optimizing the latents with strictly just the features extracted by the Resnet model can be timely and possibly prone to local minima. To combat this problem, we can use another model thats sole goal is to predict the latents of an image. This gives the latent optimizer model a better initilization point to optimize from and helps reduce the amount of time needed for optimization and the likelyhood of getting stuck in a far away minima.
+The process of optimizing the latents with strictly just the features extracted by the VGG16 model can be timely and possibly prone to local minima. To combat this problem, we can use another model thats sole goal is to predict the latents of an image. This gives the latent optimizer model a better initilization point to optimize from and helps reduce the amount of time needed for optimization and the likelyhood of getting stuck in a far away minima.
 
 Here you can see the the images generated with the predicted latents from the Image To latent Model.
 <img src="assets/images/image_to_latent_predictions.png">
@@ -124,3 +124,5 @@ The issue with this is that it turns out to be really difficult optimize from pi
 To get around this issue, instead of comparing pixel-wise you can compare feature-wise by extracting the features of both images through a pretrained feature extractor like VGG16 and forgoing the use of the final fully-connected classification layers. Featurewise optimization works much better in practice with simple loss functions like MSE.
 
 <img src="assets/images/feature_optimization.png">
+
+What if instead of a random latent vector as a starting point, we could speed up the optimization process by making a really good guess as to what the query image's latent vector is? This is where an machine learning model called the Image To Latent model comes in. I've talked about it briefly [here](#image-to-latent-model) 
