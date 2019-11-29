@@ -114,7 +114,7 @@ What you may notice from these transformations is that features are not complete
 ### Okay, we have a query image we want to modify. How do we get the latent representation of that query image so that we can modify it?
 The first step that you may think of is to just compare a random generated image from the GAN with your query image with a loss function like mean squared error (MSE). Afterwards, use gradient decent to optimize the latent values of the random image until the generated image matches your query image.
 
-The issue with this is that it turns out to be really difficult optimize from pixel difference between images without a specialised loss function.
+The issue with this is that it turns out to be really difficult to optimize from pixel differences between images without a specialised loss function.
 
 To get around this issue, instead of comparing pixel-wise you can compare feature-wise by extracting the features of both images through a pretrained feature extractor like VGG16 and forgoing the use of the final fully-connected classification layers. Featurewise optimization works much better in practice with simple loss functions like MSE.
 
