@@ -113,3 +113,5 @@ This can be done with any discoverable feature within the latent space. For exam
 | Reference Image  | More Feminine  | More Masculine  | Transformation  |
 |---|---|---|---|
 | <img src="assets/images/test_02/test_02.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/gender/female.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/gender/male.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/gender/test_02_gender.gif" width="256px" height="200px">  |
+
+What you may notice from these transformations is that features are not completely independent and when changing one feature you often change many other dependent features.
