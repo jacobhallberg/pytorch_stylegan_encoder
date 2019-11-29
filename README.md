@@ -1,1 +1,1 @@
-# pytorch_stylegan_encoder
+# StyleGAN Encoder - Pytorch Implementation
