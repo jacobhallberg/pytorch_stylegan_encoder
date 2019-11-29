@@ -2,3 +2,5 @@ __pycache__
 .pt
 .npy
 .ipynb_checkpoints
+image_to_latent.pt
+dlatents.npy

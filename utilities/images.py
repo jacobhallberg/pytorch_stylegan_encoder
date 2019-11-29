@@ -26,3 +26,8 @@ def images_to_video(images, save_path, image_size = 1024):
         video.write(image.astype(np.uint8))
         
     video.release() 
+
+def save_image(image, save_path):
+    image = np.transpose(image, (1,2,0)).astype(np.uint8)
+    image = Image.fromarray(image)
+    image.save(save_path)

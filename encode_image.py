@@ -7,7 +7,7 @@ from models.latent_optimizer import LatentOptimizer
 from models.image_to_latent import ImageToLatent
 from models.losses import LatentLoss
 from utilities.hooks import GeneratedImageHook
-from utilities.images import load_images, images_to_video
+from utilities.images import load_images, images_to_video, save_image
 from utilities.files import validate_path
 
 parser = argparse.ArgumentParser(description="Find the latent space representation of an input image.")
@@ -15,8 +15,8 @@ parser.add_argument("image_path", help="Filepath of the image to be encoded.")
 parser.add_argument("dlatent_path", help="Filepath to save the dlatent (WP) at.")
 
 parser.add_argument("--save_optimized_image", default=False, help="Whether or not to save the image created with the optimized latents.", type=bool)
-parser.add_argument("--optimized_image_path", default="optimized.jpg", help="The path to save the image created with the optimized latents.", type=str)
-parser.add_argument("--video", default=True, help="Whether or not to save a video of the encoding process.", type=bool)
+parser.add_argument("--optimized_image_path", default="optimized.png", help="The path to save the image created with the optimized latents.", type=str)
+parser.add_argument("--video", default=False, help="Whether or not to save a video of the encoding process.", type=bool)
 parser.add_argument("--video_path", default="video.avi", help="Where to save the video at.", type=str)
 parser.add_argument("--save_frequency", default=10, help="How often to save the images to video. Smaller = Faster.", type=int)
 parser.add_argument("--iterations", default=1000, help="Number of optimizations steps.", type=int)
@@ -37,7 +37,7 @@ def optimize_latents():
     for param in latent_optimizer.parameters():
         param.requires_grad_(False)
     
-    if args.video:
+    if args.video or args.save_optimized_image:
         # Hook, saves an image during optimization to be used to create video.
         generated_image_hook = GeneratedImageHook(latent_optimizer.post_synthesis_processing, args.save_frequency)
 
@@ -78,12 +78,14 @@ def optimize_latents():
 
     if args.video:
         images_to_video(generated_image_hook.get_images(), args.video_path)
+    if args.save_optimized_image:
+        save_image(generated_image_hook.last_image, args.optimized_image_path)
 
 def main():
     assert(validate_path(args.image_path, "r"))
     assert(validate_path(args.dlatent_path, "w"))
     if args.video: assert(validate_path(args.video_path, "w"))
-    if args.save_optimized_image: assert(validate_path(args.optimized_image_path))
+    if args.save_optimized_image: assert(validate_path(args.optimized_image_path, "w"))
     
     optimize_latents()
 
