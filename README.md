@@ -73,7 +73,7 @@ This will populate a directory at ./dataset_directory with 50,000 generated face
 ### What are latents?
 Typically with generative models the latent code acts as input into the generative model and modifying the latent code modifies the output image. StyleGAN uses latent codes, but applies a non-linear transformation to the input latent codes creating a learned latent space W which governs the features of the generated output images.
 
-<img src="assets/images/latent_differences.png">
+<img src="assets/images/latent_difference.png">
 
 ### What are the benifits to using a mapping network to create a latent space?
 
