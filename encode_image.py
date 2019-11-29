@@ -84,8 +84,10 @@ def optimize_latents():
 def main():
     assert(validate_path(args.image_path, "r"))
     assert(validate_path(args.dlatent_path, "w"))
+    assert(args.layer >= 1)
     if args.video: assert(validate_path(args.video_path, "w"))
     if args.save_optimized_image: assert(validate_path(args.optimized_image_path, "w"))
+    if args.use_latent_finder: assert(validate_path(args.image_to_latent_path, "r"))
     
     optimize_latents()
 

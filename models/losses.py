@@ -13,8 +13,8 @@ class LatentLoss(torch.nn.Module):
         
         # VGG16 Feature Loss
         # Absolute vs MSE Loss
-        loss += 1 * self.l1_loss(real_features, generated_features)      
-#         loss += 1 * self.l2_loss(real_features, generated_features)
+        # loss += 1 * self.l1_loss(real_features, generated_features)      
+        loss += 1 * self.l2_loss(real_features, generated_features)
 
         # Pixel Loss
 #         loss += 1.5 * self.log_cosh_loss(real_image, generated_image)
