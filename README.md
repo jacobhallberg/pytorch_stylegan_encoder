@@ -126,3 +126,6 @@ To get around this issue, instead of comparing pixel-wise you can compare featur
 <img src="assets/images/feature_optimization.png">
 
 What if instead of a random latent vector as a starting point, we could speed up the optimization process by making a really good guess as to what the query image's latent vector is? This is where a machine learning model called the Image To Latent model comes in. I've talked about it briefly [here](#the-image-to-latent-model)
+
+### How do we discover features within latent space to modify latent representations?
+This is all talked about [here](https://github.com/ShenYujun/InterFaceGAN).
