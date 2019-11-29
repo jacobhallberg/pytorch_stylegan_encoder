@@ -1,0 +1,3 @@
+[submodule "InterFaceGAN"]
+	path = InterFaceGAN
+	url = git://github.com/ShenYujun/InterFaceGAN.git
