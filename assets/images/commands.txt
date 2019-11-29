@@ -1,0 +1,1 @@
+convert -delay 50 -loop 0 *.jpg -morph 5 test_01_w_to_m.gif
