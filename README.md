@@ -92,4 +92,20 @@ This is where StyleGAN shines. The mapping network doesn't have to map the vecto
 |---|---|
 | <img src="assets/images/male_female_actual.png">  | <img src="assets/images/male_female_mapping.png">  |
 
-Additionally, the image creation starts from a constant vector that is optimized during the training process. This constant vector acts as a seed for the GAN and the mapped vectors w are passed into the convolutional layers within the GAN through adaptive instance normalization (AdaIN).
+Additionally, the image creation starts from a constant vector that is optimized during the training process. This constant vector acts as a seed for the GAN and the mapped vectors w are passed into the convolutional layers within the GAN through adaptive instance normalization (AdaIN). This takes away the responsiblity of the GAN having to learn how to warp a uniform distribution into one that represents the data and allows it to focus simple on generating images.
+
+
+### How do latents (latent space) make it easier to modify an image?
+A point within the latent space W from the mapping network represents a fixed image with fixed features. If you take that point and shift it across an axis, you modify the features of the image. If modify in soley the direction of a specific feature within the latent space W, everything about the image stays the same besides the feature that the point is being shifted towards. 
+
+To make this more clear, imagine a vector that represents a male with short hair within the latent space W. If you'd like to keep the short hair, but generate a female version of a male, all you need to do is shift the vector in the direction of female without changing the direction of the type of hair.
+
+|  Male with Short Hair | Male Transformed To Female with Short Hair  |
+|---|---|
+| <img src="assets/images/point_male.png">  | <img src="assets/images/point_female.png">  |
+
+This can be done with any discoverable feature within the latent space. For example, age.
+
+| Reference Image  | Young  | Old  | Transformation  |
+|---|---|---|---|
+| <img src="assets/images/test_01/test_02.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/young.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/old.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/test_02_age.gif" width="256px" height="200px">  |
