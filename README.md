@@ -106,7 +106,7 @@ To make this more clear, imagine a vector that represents a male with short hair
 
 This can be done with any discoverable feature within the latent space. For example, age and gender.
 
-| Reference Image  | Young  | Old  | Transformation  |
+| Reference Image  | Younger  | Older  | Transformation  |
 |---|---|---|---|
 | <img src="assets/images/test_02/test_02.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/young.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/old.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/test_02_age.gif" width="256px" height="200px">  |
 
