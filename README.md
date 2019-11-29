@@ -38,6 +38,8 @@ The process of optimizing the latents with strictly just the features extracted 
 
 Without using an Image To Latent model the encode_image.py script defaults to optimize latents initialized with all zeros.
 
+<img src="assets/images/image_to_latent_predictions.png">
+
 ### Usage
 The encode_image.py script by default does not use the Image To Latent model, but you can activate it by specifiying the following params when running encode_image.py.
 ```bash
