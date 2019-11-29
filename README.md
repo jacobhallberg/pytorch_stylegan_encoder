@@ -111,7 +111,7 @@ This can be done with any discoverable feature within the latent space. For exam
 
 What you may notice from these transformations is that features are not completely independent and when changing one feature you often change many other dependent features.
 
-### Okay, we have an image we want to modify but how do we get the latent representation of that image so that we can modify it?
+### Okay, we have a query image we want to modify. How do we get the latent representation of that query image so that we can modify it?
 The first step that you may think of is to just compare a random generated image from the GAN with your query image with a loss function like mean squared error (MSE). Afterwards, use gradient decent to optimize the latent values of the random image until the generated image matches your query image.
 
 The issue with this is that it turns out to be really difficult optimize from pixel difference between images without a specialised loss function.
