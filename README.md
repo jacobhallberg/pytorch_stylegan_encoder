@@ -11,12 +11,7 @@
 - [Some Explanations](#explanations)
 
 ## Usage
-Take an image of a face you'd like to modify and align the face by using the align_image.py script.
-
-```bash
-python align_image.py image.jpg aligned_image.jpg
-
-```
+Take an image of a face you'd like to modify and align the face by using an align face script. I'd recommend the one [here](https://github.com/Puzer/stylegan-encoder/blob/master/align_images.py).
 
 Then find the latents for the aligned face by using the encode_image.py script.
 ```bash
