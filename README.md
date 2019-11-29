@@ -125,4 +125,4 @@ To get around this issue, instead of comparing pixel-wise you can compare featur
 
 <img src="assets/images/feature_optimization.png">
 
-What if instead of a random latent vector as a starting point, we could speed up the optimization process by making a really good guess as to what the query image's latent vector is? This is where an machine learning model called the Image To Latent model comes in. I've talked about it briefly [here](#image-to-latent-model) 
+What if instead of a random latent vector as a starting point, we could speed up the optimization process by making a really good guess as to what the query image's latent vector is? This is where a machine learning model called the Image To Latent model comes in. I've talked about it briefly [here](#the-image-to-latent-model)
