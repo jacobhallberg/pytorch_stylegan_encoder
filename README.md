@@ -7,6 +7,7 @@
 
 - [Usage](#usage)
 - [The Image To Latent Model](#the-image-to-latent-model)
+- [Some Explanations](#explanations)
 
 ## Usage
 Take an image of a face you'd like to modify and align the face by using the align_image.py script.
@@ -62,3 +63,8 @@ python InterFaceGAN/generate_data.py
   -s WP
 ```
 This will populate a directory at ./dataset_directory with 50,000 generated faces and a numpy array file called wp.npy. You can then load these into the notebook to train a new model. Using more than 50,000 will train a better latent predictor.
+
+## Explanations
+
+### What is StyleGAN?
+[StyleGAN](https://github.com/NVlabs/stylegan) is a NVIDIA based work that enables the generation of high-quality images representing an image dataset with the ability to control aspects of the image synthesis.
