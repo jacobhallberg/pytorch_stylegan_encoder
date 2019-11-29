@@ -31,6 +31,6 @@ python InterFaceGAN/edit.py
   -s WP
   --steps 20
 ```
-The resulting script will modify the latents and correspondingly the aligned face with the boundary that you select (pose in the above example).
+The resulting script will modify the latents and correspondingly the aligned face with the boundary that you select (pose in the above example). It will save all of the transformed images in the -o directory (./results in the above example).
 
   
