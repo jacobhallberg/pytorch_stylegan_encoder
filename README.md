@@ -96,7 +96,7 @@ Additionally, the image creation starts from a constant vector that is optimized
 
 
 ### How do latents (latent space) make it easier to modify an image?
-A point within the latent space W from the mapping network represents a fixed image with fixed features. If you take that point and shift it across an axis, you modify the features of the image. If modify in soley the direction of a specific feature within the latent space W, everything about the image stays the same besides the feature that the point is being shifted towards. 
+A vector within the latent space W from the mapping network represents a fixed image with fixed features. If you take that vector and shift it across an axis, you modify the features of the image. If modified in soley the direction of a specific feature within the latent space W, everything about the image stays the same besides the feature that the vector is being shifted towards. 
 
 To make this more clear, imagine a vector that represents a male with short hair within the latent space W. If you'd like to keep the short hair, but generate a female version of a male, all you need to do is shift the vector in the direction of female without changing the direction of the type of hair.
 
@@ -104,8 +104,12 @@ To make this more clear, imagine a vector that represents a male with short hair
 |---|---|
 | <img src="assets/images/point_male.png">  | <img src="assets/images/point_female.png">  |
 
-This can be done with any discoverable feature within the latent space. For example, age.
+This can be done with any discoverable feature within the latent space. For example, age and gender.
 
 | Reference Image  | Young  | Old  | Transformation  |
 |---|---|---|---|
-| <img src="assets/images/test_01/test_02.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/young.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/old.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/test_02_age.gif" width="256px" height="200px">  |
+| <img src="assets/images/test_02/test_02.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/young.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/old.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/test_02_age.gif" width="256px" height="200px">  |
+
+| Reference Image  | More Feminine  | More Masculine  | Transformation  |
+|---|---|---|---|
+| <img src="assets/images/test_02/test_02.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/gender/female.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/gender/male.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/gender/test_02_gender.gif" width="256px" height="200px">  |
