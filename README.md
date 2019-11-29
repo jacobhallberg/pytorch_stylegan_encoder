@@ -69,3 +69,12 @@ This will populate a directory at ./dataset_directory with 50,000 generated face
 
 ### What is StyleGAN?
 [StyleGAN](https://github.com/NVlabs/stylegan) is a NVIDIA based work that enables the generation of high-quality images representing an image dataset with the ability to control aspects of the image synthesis.
+
+### What are latents?
+Typically with generative models the latent code acts as input into the generative model and modifying the latent code modifies the output image. StyleGAN uses latent codes, but applies a non-linear transformation to the input latent codes creating a learned latent space W which governs the features of the generated output images.
+
+<img src="assets/images/latent_differences.png">
+
+### What are the benifits to using a mapping network to create a latent space?
+
+<img src="assets/images/latent_benefits.png">
