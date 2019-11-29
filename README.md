@@ -33,4 +33,15 @@ python InterFaceGAN/edit.py
 ```
 The resulting script will modify the latents and correspondingly the aligned face with the boundary that you select (pose in the above example). It will save all of the transformed images in the -o directory (./results in the above example).
 
-  
+## The Image To Latent Model
+The process of optimizing the latents with strictly just the features extracted by the Resnet model can be timely and at times may get stuck in a local minima. To combat this problem, we can use another model thats sole goal is to predict the latents of an image. This gives the latent optimizer model a better initilization point to optimize from and helps reduce amount of time needed for optimization and the likelyhood of getting stuck in a far away minima.
+
+### Usage
+The encode_image.py script by default does not use the Image To Latent model, but you can activate it by specifiying the following params when running encode_image.py.
+```bash
+python encode_image.py
+  aligned_image.jpg
+  dlatents.npy
+  --use_latent_finder true # Activates model.
+  --image_to_latent_path ./image_to_latent.pt # Specifies path to model.
+```
