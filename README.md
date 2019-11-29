@@ -34,7 +34,7 @@ python InterFaceGAN/edit.py
 The resulting script will modify the latents and correspondingly the aligned face with the boundary that you select (pose in the above example). It will save all of the transformed images in the -o directory (./results in the above example).
 
 ## The Image To Latent Model
-The process of optimizing the latents with strictly just the features extracted by the Resnet model can be timely and at times may get stuck in a local minima. To combat this problem, we can use another model thats sole goal is to predict the latents of an image. This gives the latent optimizer model a better initilization point to optimize from and helps reduce amount of time needed for optimization and the likelyhood of getting stuck in a far away minima.
+The process of optimizing the latents with strictly just the features extracted by the Resnet model can be timely and at times may get stuck in a local minima. To combat this problem, we can use another model thats sole goal is to predict the latents of an image. This gives the latent optimizer model a better initilization point to optimize from and helps reduce the amount of time needed for optimization and the likelyhood of getting stuck in a far away minima.
 
 ### Usage
 The encode_image.py script by default does not use the Image To Latent model, but you can activate it by specifiying the following params when running encode_image.py.
@@ -45,3 +45,14 @@ python encode_image.py
   --use_latent_finder true # Activates model.
   --image_to_latent_path ./image_to_latent.pt # Specifies path to model.
 ```
+
+### Training
+All of the training is located in the train_image_to_latent_model.ipynb notebook. To generated a dataset use the following command.
+```bash
+python InterFaceGAN/generate_data.py
+  -m stylegan_ffhq
+  -o dataset_directory
+  -n 50000
+  -s WP
+```
+This will populate a directory at ./dataset_directory with 50,000 generated faces and a numpy array file called wp.npy. You can then load these into the notebook to train a new model. Using more than 50,000 will train a better latent predictor.
