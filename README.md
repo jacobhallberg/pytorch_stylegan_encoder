@@ -78,7 +78,7 @@ If you can control the latents you can control the features of the generated out
 <img src="assets/images/latent_difference.png">
 
 ### What are the benifits of using a mapping network to create a latent space?
-In traditional GAN architecture, the input vector z is sampled from a gaussian distribution. The issue with sampling from a guassian distribution and then generating images from the sampled vectors z, is that if the features of your data distrubtion do not follow a guassian distribution the sampled vectors z contain features that never existed in your data distrubtion. This causes the generator to generate images with features never seen in your data distribution.
+In traditional GAN architecture, the input vector z is sampled from a uniform gaussian distribution. The issue with sampling from a uniform guassian distribution and then generating images from the sampled vectors z, is that if the features of your data distrubtion do not follow a guassian distribution the sampled vectors z contain features that never existed in your data distrubtion. This causes the generator to generate images with features never seen in your data distribution.
 
 |  Actual Feature Distribution | Gaussian Feature Distribution  |
 |---|---|
@@ -86,7 +86,7 @@ In traditional GAN architecture, the input vector z is sampled from a gaussian d
 
 For example, above shows the actual feature distribution of some data and the feature distribtuion of data sampled from a gaussian distribution. In the above case, the actual distribution of data does not contain males with long hair, but the sampled vector z from a gaussian distribution will generate images of males with long hair.
 
-This is where StyleGAN shines. The mapping network doesn't have to map the vectors z into a gaussian distribution because the mapping network is learned through the data itself. Meaning the mapping network is able to produce a latent space W that can better represent the features seen in the data.
+This is where StyleGAN shines. The mapping network doesn't have to map the vectors z into a gaussian distribution because the mapping network is learned through the data itself. Meaning the mapping network is able to produce a latent space W that can better represent the features seen in the data by taking in a uniform distribution of data z and mapping it to a distribution that contains gaps w.
 
 |  Actual Feature Distribution | Mapping Network Feature Distribution  |
 |---|---|
