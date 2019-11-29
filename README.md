@@ -115,3 +115,10 @@ This can be done with any discoverable feature within the latent space. For exam
 | <img src="assets/images/test_02/test_02.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/gender/female.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/gender/male.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/gender/test_02_gender.gif" width="256px" height="200px">  |
 
 What you may notice from these transformations is that features are not completely independent and when changing one feature you often change many other dependent features.
+
+### Okay, we have an image we want to modify but how do we get the latent representation of that image so that we can modify it?
+The first step that you may think of is to just compare a random generated image from the GAN with your query image with a loss function like mean squared error (MSE). Afterwards, use gradient decent to optimize the latent values of the random image until the generated image matches your query image.
+
+The issue with this is that it turns out to be really difficult optimize from pixel difference between images without a specialised loss function.
+
+To get around this issue, instead of comparing pixel-wise you can compare feature-wise by extracting the features of both images through a pretrained feature extractor like Resnet trained on Imagenet and forgoing the use of the final fully-connected classification layers. Featurewise optimization works much better in practice with simple loss functions like MSE.
