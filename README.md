@@ -108,4 +108,4 @@ This can be done with any discoverable feature within the latent space. For exam
 
 | Reference Image  | Young  | Old  | Transformation  |
 |---|---|---|---|
-| <img src="assets/images/test_01/test_02.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/young.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/old.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/test_02_age.gif" width="256px" height="200px">  |
+| <img src="assets/images/test_02/test_02.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/young.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/old.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/test_02_age.gif" width="256px" height="200px">  |
