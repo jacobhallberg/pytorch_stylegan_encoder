@@ -12,6 +12,11 @@
 - [Some Explanations](#explanations)
 
 ## Setup
+1. Submodule Update
+```bash
+git submodule update --init --recursive
+```
+
 Download the Image To Latent and StyleGAN models from the release on this repo. Place the Image To Latent model at the root of the directory and place the StyleGAN model at ./InterFaceGAN/models/pretrain/.
 
 ## Usage
