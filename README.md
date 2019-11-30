@@ -84,13 +84,13 @@ optional arguments:
   --learning_rate LEARNING_RATE
                         Learning rate for SGD.
   --vgg_layer VGG_LAYER
-                        The layers extract features from when optimizing the
-                        latents.
+                        The VGG network layer number to extract features from.
   --use_latent_finder USE_LATENT_FINDER
                         Whether or not to use a latent finder to find the
                         starting latents to optimize from.
   --image_to_latent_path IMAGE_TO_LATENT_PATH
                         The path to the .pt (Pytorch) latent finder model.
+
 
 ```
 
