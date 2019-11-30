@@ -6,17 +6,21 @@
 | <img src="assets/images/test_02/test_02.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/test_02_age.gif" width="256px" height="200px">  | <img src="assets/images/test_02/gender/test_02_gender.gif" width="256px" height="200px">  | <img src="assets/images/test_02/glasses/test_02_glasses.gif" width="256px" height="200px">  |
 
 ## Contents
+- [Setup](#setup)
 - [Usage](#usage)
 - [The Image To Latent Model](#the-image-to-latent-model)
 - [Some Explanations](#explanations)
 
-## Usage
-Take an image of a face you'd like to modify and align the face by using the align_image.py script.
-
+## Setup
+1. Submodule Update
 ```bash
-python align_image.py image.jpg aligned_image.jpg
-
+git submodule update --init --recursive
 ```
+
+Download the Image To Latent and StyleGAN models from the release on this repo. Place the Image To Latent model at the root of the directory and place the StyleGAN model at ./InterFaceGAN/models/pretrain/.
+
+## Usage
+Take an image of a face you'd like to modify and align the face by using an align face script. I'd recommend the one [here](https://github.com/Puzer/stylegan-encoder/blob/master/align_images.py).
 
 Then find the latents for the aligned face by using the encode_image.py script.
 ```bash
@@ -39,7 +43,7 @@ python InterFaceGAN/edit.py
 The resulting script will modify the latents and correspondingly the aligned face with the boundary that you select (pose in the above example). It will save all of the transformed images in the -o directory (./results in the above example).
 
 ## The Image To Latent Model
-The process of optimizing the latents with strictly just the features extracted by the Resnet model can be timely and possibly prone to local minima. To combat this problem, we can use another model thats sole goal is to predict the latents of an image. This gives the latent optimizer model a better initilization point to optimize from and helps reduce the amount of time needed for optimization and the likelyhood of getting stuck in a far away minima.
+The process of optimizing the latents with strictly just the features extracted by the VGG16 model can be timely and possibly prone to local minima. To combat this problem, we can use another model thats sole goal is to predict the latents of an image. This gives the latent optimizer model a better initilization point to optimize from and helps reduce the amount of time needed for optimization and the likelyhood of getting stuck in a far away minima.
 
 Here you can see the the images generated with the predicted latents from the Image To latent Model.
 <img src="assets/images/image_to_latent_predictions.png">
@@ -106,7 +110,7 @@ To make this more clear, imagine a vector that represents a male with short hair
 
 This can be done with any discoverable feature within the latent space. For example, age and gender.
 
-| Reference Image  | Young  | Old  | Transformation  |
+| Reference Image  | Younger  | Older  | Transformation  |
 |---|---|---|---|
 | <img src="assets/images/test_02/test_02.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/young.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/old.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/age/test_02_age.gif" width="256px" height="200px">  |
 
@@ -116,11 +120,16 @@ This can be done with any discoverable feature within the latent space. For exam
 
 What you may notice from these transformations is that features are not completely independent and when changing one feature you often change many other dependent features.
 
-### Okay, we have an image we want to modify but how do we get the latent representation of that image so that we can modify it?
+### Okay, we have a query image we want to modify. How do we get the latent representation of that query image so that we can modify it?
 The first step that you may think of is to just compare a random generated image from the GAN with your query image with a loss function like mean squared error (MSE). Afterwards, use gradient decent to optimize the latent values of the random image until the generated image matches your query image.
 
-The issue with this is that it turns out to be really difficult optimize from pixel difference between images without a specialised loss function.
+The issue with this is that it turns out to be really difficult to optimize from pixel differences between images without a specialised loss function.
 
 To get around this issue, instead of comparing pixel-wise you can compare feature-wise by extracting the features of both images through a pretrained feature extractor like VGG16 and forgoing the use of the final fully-connected classification layers. Featurewise optimization works much better in practice with simple loss functions like MSE.
 
 <img src="assets/images/feature_optimization.png">
+
+What if instead of a random latent vector as a starting point, we could speed up the optimization process by making a really good guess as to what the query image's latent vector is? This is where a machine learning model called the Image To Latent model comes in. I've talked about it briefly [here](#the-image-to-latent-model)
+
+### How do we discover features within latent space to modify latent representations?
+This is all talked about [here](https://github.com/ShenYujun/InterFaceGAN).
