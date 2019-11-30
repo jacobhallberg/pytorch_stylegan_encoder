@@ -42,6 +42,58 @@ python InterFaceGAN/edit.py
 ```
 The resulting script will modify the latents and correspondingly the aligned face with the boundary that you select (pose in the above example). It will save all of the transformed images in the -o directory (./results in the above example).
 
+### Encode Image
+```bash
+python encode_image.py -h
+
+usage: encode_image.py [-h] [--save_optimized_image SAVE_OPTIMIZED_IMAGE]
+                       [--optimized_image_path OPTIMIZED_IMAGE_PATH]
+                       [--video VIDEO] [--video_path VIDEO_PATH]
+                       [--save_frequency SAVE_FREQUENCY]
+                       [--iterations ITERATIONS] [--model_type MODEL_TYPE]
+                       [--learning_rate LEARNING_RATE] [--vgg_layer VGG_LAYER]
+                       [--use_latent_finder USE_LATENT_FINDER]
+                       [--image_to_latent_path IMAGE_TO_LATENT_PATH]
+                       image_path dlatent_path
+
+Find the latent space representation of an input image.
+
+positional arguments:
+  image_path            Filepath of the image to be encoded.
+  dlatent_path          Filepath to save the dlatent (WP) at.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --save_optimized_image SAVE_OPTIMIZED_IMAGE
+                        Whether or not to save the image created with the
+                        optimized latents.
+  --optimized_image_path OPTIMIZED_IMAGE_PATH
+                        The path to save the image created with the optimized
+                        latents.
+  --video VIDEO         Whether or not to save a video of the encoding
+                        process.
+  --video_path VIDEO_PATH
+                        Where to save the video at.
+  --save_frequency SAVE_FREQUENCY
+                        How often to save the images to video. Smaller =
+                        Faster.
+  --iterations ITERATIONS
+                        Number of optimizations steps.
+  --model_type MODEL_TYPE
+                        The model to use from InterFaceGAN repo.
+  --learning_rate LEARNING_RATE
+                        Learning rate for SGD.
+  --vgg_layer VGG_LAYER
+                        The VGG network layer number to extract features from.
+  --use_latent_finder USE_LATENT_FINDER
+                        Whether or not to use a latent finder to find the
+                        starting latents to optimize from.
+  --image_to_latent_path IMAGE_TO_LATENT_PATH
+                        The path to the .pt (Pytorch) latent finder model.
+
+
+```
+
 ## The Image To Latent Model
 The process of optimizing the latents with strictly just the features extracted by the VGG16 model can be timely and possibly prone to local minima. To combat this problem, we can use another model thats sole goal is to predict the latents of an image. This gives the latent optimizer model a better initilization point to optimize from and helps reduce the amount of time needed for optimization and the likelyhood of getting stuck in a far away minima.
 
