@@ -22,7 +22,7 @@ parser.add_argument("--save_frequency", default=10, help="How often to save the 
 parser.add_argument("--iterations", default=1000, help="Number of optimizations steps.", type=int)
 parser.add_argument("--model_type", default="stylegan_ffhq", help="The model to use from InterFaceGAN repo.", type=str)
 parser.add_argument("--learning_rate", default=1, help="Learning rate for SGD.", type=int)
-parser.add_argument("--vgg_layer", default=12, help="The layers extract features from when optimizing the latents.", type=int)
+parser.add_argument("--vgg_layer", default=12, help="The VGG network layer number to extract features from.", type=int)
 parser.add_argument("--use_latent_finder", default=False, help="Whether or not to use a latent finder to find the starting latents to optimize from.", type=bool)
 parser.add_argument("--image_to_latent_path", default="image_to_latent.pt", help="The path to the .pt (Pytorch) latent finder model.", type=str)
 
