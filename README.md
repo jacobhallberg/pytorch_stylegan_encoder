@@ -148,7 +148,7 @@ This is where StyleGAN shines. The mapping network doesn't have to map the vecto
 |---|---|
 | <img src="assets/images/male_female_actual.png">  | <img src="assets/images/male_female_mapping.png">  |
 
-Additionally, the image creation starts from a constant vector that is optimized during the training process. This constant vector acts as a seed for the GAN and the mapped vectors w are passed into the convolutional layers within the GAN through adaptive instance normalization (AdaIN). This takes away the responsiblity of the GAN having to learn how to warp a uniform distribution into one that represents the data and allows it to focus simple on generating images.
+Additionally, the image creation starts from a constant vector that is optimized during the training process. This constant vector acts as a seed for the GAN and the mapped vectors w are passed into the convolutional layers within the GAN through adaptive instance normalization (AdaIN). This takes away the responsiblity of the GAN having to learn how to warp a uniform distribution into one that represents the data and allows it to simply focus on generating images.
 
 
 ### How do latents (latent space) make it easier to modify an image?
