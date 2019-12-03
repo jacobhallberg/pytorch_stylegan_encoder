@@ -9,7 +9,7 @@
 - [Setup](#setup)
 - [Usage](#usage)
 - [The Image To Latent Model](#the-image-to-latent-model)
-- [Some Explanations](#explanations)
+- [Explanations](#explanations)
 
 ## Setup
 1. Submodule Update
