@@ -111,7 +111,7 @@ python encode_image.py
 ```
 
 ### Training
-All of the training is located in the train_image_to_latent_model.ipynb notebook. To generated a dataset use the following command.
+All of the training is located in the train_image_to_latent_model.ipynb notebook. To generate a dataset use the following command.
 ```bash
 python InterFaceGAN/generate_data.py
   -m stylegan_ffhq
