@@ -97,11 +97,11 @@ optional arguments:
 ## The Image To Latent Model
 The process of optimizing the latents with strictly just the features extracted by the VGG16 model can be timely and possibly prone to local minima. To combat this problem, we can use another model thats sole goal is to predict the latents of an image. This gives the latent optimizer model a better initilization point to optimize from and helps reduce the amount of time needed for optimization and the likelyhood of getting stuck in a far away minima.
 
-Here you can see the the images generated with the predicted latents from the Image To latent Model.
+Here you can see the the images generated with the predicted latents from the Image To Latent Model.
 <img src="assets/images/image_to_latent_predictions.png">
 
 ### Usage
-The encode_image.py script by default does not use the Image To Latent model, but you can activate it by specifiying the following params when running encode_image.py. Without using an Image To Latent model the encode_image.py script defaults to optimize latents initialized with all zeros.
+The encode_image.py script by default does not use the Image To Latent model, but you can activate it by specifiying the following args when running encode_image.py. Without using an Image To Latent model the encode_image.py script defaults to optimize latents initialized with all zeros.
 ```bash
 python encode_image.py
   aligned_image.jpg
@@ -111,7 +111,7 @@ python encode_image.py
 ```
 
 ### Training
-All of the training is located in the train_image_to_latent_model.ipynb notebook. To generate a dataset use the following command.
+All of the training is located in the [train_image_to_latent_model.ipynb notebook](https://github.com/jacobhallberg/pytorch_stylegan_encoder/blob/master/train_image_to_latent_model.ipynb). To generate a dataset use the following command.
 ```bash
 python InterFaceGAN/generate_data.py
   -m stylegan_ffhq
@@ -119,17 +119,17 @@ python InterFaceGAN/generate_data.py
   -n 50000
   -s WP
 ```
-This will populate a directory at ./dataset_directory with 50,000 generated faces and a numpy array file called wp.npy. You can then load these into the notebook to train a new model. Using more than 50,000 will train a better latent predictor.
+This will populate a directory at ./dataset_directory with 50,000 generated faces and a numpy file called wp.npy. You can then load these into the notebook to train a new model. Using more than 50,000 will train a better latent predictor.
 
 ## Explanations
 
-### What is StyleGAN?
-[StyleGAN](https://github.com/NVlabs/stylegan) is a NVIDIA based work that enables the generation of high-quality images representing an image dataset with the ability to control aspects of the image synthesis.
+### What is a StyleGAN?
+[StyleGAN](https://github.com/NVlabs/stylegan) is a NVIDIA based work that enables the generation of high-quality images representing the image dataset that it was trained on with the ability to control aspects of the image synthesis.
 
-### What are latents?
+### What are latent codes (latents)?
 Typically with generative models the latent code acts as input into the generative model and modifying the latent code modifies the output image. StyleGAN uses latent codes, but applies a non-linear transformation to the input latent codes z, creating a learned latent space W which governs the features of the generated output images.
 
-If you can control the latents you can control the features of the generated output image.
+If you can control the latent space you can control the features of the generated output image. This is the underlying principal that is used to transform faces in this repo.
 
 <img src="assets/images/latent_difference.png">
 
@@ -148,13 +148,13 @@ This is where StyleGAN shines. The mapping network doesn't have to map the vecto
 |---|---|
 | <img src="assets/images/male_female_actual.png">  | <img src="assets/images/male_female_mapping.png">  |
 
-Additionally, the image creation starts from a constant vector that is optimized during the training process. This constant vector acts as a seed for the GAN and the mapped vectors w are passed into the convolutional layers within the GAN through adaptive instance normalization (AdaIN). This takes away the responsiblity of the GAN having to learn how to warp a uniform distribution into one that represents the data and allows it to simply focus on generating images.
+Additionally, with StyleGAN the image creation starts from a constant vector that is optimized during the training process. This constant vector acts as a seed for the GAN and the mapped vectors w are passed into the convolutional layers within the GAN through adaptive instance normalization (AdaIN). This takes away the responsiblity of the GAN having to learn how to warp a uniform distribution into one that represents the data and allows it to simply focus on generating images. All of these aspects together allow for very high quality image generation.
 
 
 ### How do latents (latent space) make it easier to modify an image?
-A vector within the latent space W from the mapping network represents a fixed image with fixed features. If you take that vector and shift it across an axis, you modify the features of the image. If modified in soley the direction of a specific feature within the latent space W, everything about the image stays the same besides the feature that the vector is being shifted towards. 
+A vector within the latent space W from the mapping network represents a fixed image with fixed features. If you take that vector and shift it across an axis, you modify the features of the image. If modified in soley the direction of a specific feature within the latent space W, everything about the image stays the same besides the feature that the vector (latent) is being shifted towards. 
 
-To make this more clear, imagine a vector that represents a male with short hair within the latent space W. If you'd like to keep the short hair, but generate a female version of a male, all you need to do is shift the vector in the direction of female without changing the direction of the type of hair.
+To make this more clear, imagine a vector that represents a male with short hair within the latent space W. If you'd like to keep the short hair, but generate a female version of a male, all you need to do is shift the vector in the direction of female without changing the direction of the length of hair.
 
 |  Male with Short Hair | Male Transformed To Female with Short Hair  |
 |---|---|
@@ -170,10 +170,12 @@ This can be done with any discoverable feature within the latent space. For exam
 |---|---|---|---|
 | <img src="assets/images/test_02/test_02.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/gender/female.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/gender/male.jpg" width="256px" height="200px">  | <img src="assets/images/test_02/gender/test_02_gender.gif" width="256px" height="200px">  |
 
-What you may notice from these transformations is that features are not completely independent and when changing one feature you often change many other dependent features.
+What you may notice from these transformations is that features are not completely independent. When changing one feature you often change many other dependent features.
 
 ### Okay, we have a query image we want to modify. How do we get the latent representation of that query image so that we can modify it?
 The first step that you may think of is to just compare a random generated image from the GAN with your query image with a loss function like mean squared error (MSE). Afterwards, use gradient decent to optimize the latent values of the random image until the generated image matches your query image.
+
+<img src="assets/images/initial_method.png">
 
 The issue with this is that it turns out to be really difficult to optimize from pixel differences between images without a specialised loss function.
 
