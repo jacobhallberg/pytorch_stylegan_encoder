@@ -9,6 +9,8 @@ class LatentLoss(torch.nn.Module):
     
     def forward(self, real_features, generated_features, average_dlatents = None, dlatents = None):
         loss = 0
+        # Possible TODO: Add more feature based loss functions to create better optimized latents.            
+            
         # Modify scaling factors or disable losses to get best result (Image dependent).
         
         # VGG16 Feature Loss
