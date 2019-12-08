@@ -142,6 +142,9 @@ In traditional GAN architecture, the input vector z is sampled from a uniform ga
 |---|---|
 | <img src="assets/images/male_female_actual.png">  | <img src="assets/images/male_female_gaussian.png">  |
 
+###### Latent colored blocks from [StyleGan Paper](https://arxiv.org/pdf/1812.04948.pdf) figure 6. 
+
+
 For example, above shows the actual feature distribution of some data and the feature distribtuion of data sampled from a uniform gaussian distribution. In the above case, the actual distribution of data does not contain males with long hair, but the sampled vector z from a gaussian distribution will generate images of males with long hair.
 
 This is where StyleGAN shines. The mapping network doesn't have to map the vectors z into a gaussian distribution because the mapping network is learned through the data itself. Meaning the mapping network is able to produce a latent space W that can better represent the features seen in the data by taking in a uniform distribution of data z and mapping it to a distribution that contains gaps w.
