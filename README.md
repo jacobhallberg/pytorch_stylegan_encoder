@@ -132,6 +132,7 @@ Typically with generative models the latent code acts as input into the generati
 If you can control the latent space you can control the features of the generated output image. This is the underlying principal that is used to transform faces in this repo.
 
 <img src="assets/images/latent_difference.png">
+
 ###### Image from [StyleGan Paper](https://arxiv.org/pdf/1812.04948.pdf) figure 1. 
 
 ### What are the benifits of using a mapping network to create a latent space?
