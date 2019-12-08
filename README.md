@@ -132,6 +132,7 @@ Typically with generative models the latent code acts as input into the generati
 If you can control the latent space you can control the features of the generated output image. This is the underlying principal that is used to transform faces in this repo.
 
 <img src="assets/images/latent_difference.png">
+###### Image from [StyleGan Paper](https://arxiv.org/pdf/1812.04948.pdf) figure 1. 
 
 ### What are the benifits of using a mapping network to create a latent space?
 In traditional GAN architecture, the input vector z is sampled from a uniform gaussian distribution. The issue with sampling from a uniform guassian distribution and then generating images from the sampled vectors z, is that if the features of your data distrubtion do not follow a guassian distribution the sampled vectors z contain features that never existed in your data distrubtion. This causes the generator to generate images with features never seen in your data distribution.
