@@ -190,7 +190,7 @@ To get around this issue, instead of comparing pixel-wise you can compare featur
 
 What if instead of a random latent vector as a starting point, we could speed up the optimization process by making a really good guess as to what the query image's latent vector is? This is where a machine learning model called the Image To Latent model comes in. I've talked about it briefly [here](#the-image-to-latent-model)
 
-### How do we discover features within latent space to modify latent representations?
+### How do we discover features within a latent space to modify latent representations?
 Simply put, one can use support vector machines or other classifiers to discover a seperating hyperplane that within the latent space seperates the features of interest from other features. To edit the face you then can take the normal of the hyperplane and travel in the direction of the normal. This in returns modifies the latent code of the query image and in return modifies the generated image. 
 
 This is all talked about [here](https://github.com/ShenYujun/InterFaceGAN).
