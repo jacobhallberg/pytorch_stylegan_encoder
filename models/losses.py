@@ -8,6 +8,10 @@ class LatentLoss(torch.nn.Module):
         self.l2_loss = torch.nn.MSELoss()
     
     def forward(self, real_features, generated_features, average_dlatents = None, dlatents = None):
+        # Take a look at:
+            # https://github.com/pbaylies/stylegan-encoder/blob/master/encoder/perceptual_model.py
+            # For additional losses and practical scaling factors.
+            
         loss = 0
         # Possible TODO: Add more feature based loss functions to create better optimized latents.            
             
