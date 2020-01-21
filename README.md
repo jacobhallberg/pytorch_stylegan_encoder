@@ -42,6 +42,8 @@ python InterFaceGAN/edit.py
 ```
 The resulting script will modify the latents and correspondingly the aligned face with the boundary that you select (pose in the above example). It will save all of the transformed images in the -o directory (./results in the above example).
 
+If the resulting image is not to your liking, play around with the vgg16 layer that is used and also modify/add loss functions.
+
 ### Encode Image
 ```bash
 python encode_image.py -h
