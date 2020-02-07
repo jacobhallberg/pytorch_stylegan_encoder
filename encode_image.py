@@ -33,7 +33,7 @@ def optimize_latents():
     synthesizer = StyleGANGenerator(args.model_type).model.synthesis
     latent_optimizer = LatentOptimizer(synthesizer, args.vgg_layer)
 
-    # Optimizer only the dlatents.
+    # Optimize only the dlatents.
     for param in latent_optimizer.parameters():
         param.requires_grad_(False)
     
